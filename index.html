@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HumsafarTravels — Book Your Travel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Poppins', sans-serif; background: #0f172a; color: #f1f5f9; scroll-behavior: smooth; }
+.glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero-title { font-size: 2.5rem; font-weight: 700; }
+.btn { transition: all 0.3s ease; }
+.btn-primary { background: linear-gradient(90deg, #1fb6ff, #0ea5e9); color: black; }
+.btn-primary:hover { transform: scale(1.05); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="w-full sticky top-0 bg-black/70 backdrop-blur-md border-b border-slate-800 z-40">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-blue-600 text-black font-bold flex items-center justify-center rounded-md">HT</div>
+      <div>
+        <div class="text-xl font-bold text-white">HumsafarTravels</div>
+        <div class="text-xs text-slate-400 -mt-1">Darbhanga & Madhubani</div>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-6 text-slate-300">
+      <a href="#home" class="hover:text-white">Home</a>
+      <a href="#services" class="hover:text-white">Services</a>
+      <a href="#booking" class="hover:text-white">Booking</a>
+      <a href="#payment" class="hover:text-white">Payment</a>
+      <a href="#contact" class="hover:text-white">Contact</a>
+    </nav>
+    <div class="md:hidden text-slate-300 cursor-pointer">☰</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="relative">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop" 
+         alt="travel" class="w-full h-[56vh] object-cover opacity-30"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
+  </div>
+  <div class="max-w-6xl mx-auto relative px-6 py-28 flex flex-col md:flex-row items-center gap-10">
+    <div class="flex-1 text-center md:text-left">
+      <h1 class="hero-title text-white leading-tight">Fast & Reliable Travel Booking</h1>
+      <p class="mt-4 text-slate-300 max-w-xl">Serving <span class="text-blue-400 font-semibold">Madhubani & Darbhanga</span>. Car, Train & Flight bookings made easy.</p>
+      <div class="mt-6 flex justify-center md:justify-start gap-4">
+        <a href="#booking" class="px-6 py-3 rounded-lg btn btn-primary font-semibold">Book Now</a>
+        <a href="#services" class="px-6 py-3 rounded-lg border border-slate-700 text-slate-200 hover:bg-slate-800 transition">Our Services</a>
+      </div>
+    </div>
+    <!-- Quick Booking Form -->
+    <div class="w-full md:w-1/2 glass p-6 rounded-2xl shadow-lg border border-slate-800">
+      <div class="text-sm text-slate-300 mb-3">Quick Request</div>
+      <form class="grid gap-3" id="quickForm" action="https://formsubmit.co/humsafartravels95@gmail.com" method="POST" target="_blank">
+        <input type="hidden" name="_subject" value="New Quick Request Booking">
+        <div>
+          <label class="text-sm text-slate-300">Travel Type</label>
+          <select name="travel_type" id="quickTravelType" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" onchange="updateQuickPassengers()">
+            <option value="">Select Travel Type</option>
+            <option value="Car">Car</option>
+            <option value="Train">Train</option>
+            <option value="Flight">Flight</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-sm text-slate-300">Number of Passengers</label>
+          <input type="number" id="quickPassengerCount" min="1" value="1" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" onchange="updateQuickPassengers()"/>
+        </div>
+        <div id="quickPassengerFields"></div>
+        <div class="grid md:grid-cols-2 gap-2">
+          <input type="text" name="from_city" placeholder="From (City)" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+          <input type="text" name="to_city" placeholder="To (City)" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+        </div>
+        <div class="flex gap-2 mt-2">
+          <input type="date" name="date" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+          <input type="tel" name="phone" placeholder="Phone" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+        </div>
+        <button type="submit" class="mt-2 py-3 rounded-lg bg-blue-500 text-black font-semibold hover:bg-blue-400 transition">Submit Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-16">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl text-center font-bold mb-8">Our Services</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="glass p-8 rounded-2xl flex flex-col items-center text-center shadow-lg border border-slate-800 cursor-pointer" onclick="openBooking('Car')">
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-sky-400 text-black text-2xl">🚗</div>
+        <h3 class="mt-4 text-xl font-semibold">Car Service</h3>
+      </div>
+      <div class="glass p-8 rounded-2xl flex flex-col items-center text-center shadow-lg border border-slate-800 cursor-pointer" onclick="openBooking('Train')">
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-sky-400 text-black text-2xl">🚆</div>
+        <h3 class="mt-4 text-xl font-semibold">Train Service</h3>
+      </div>
+      <div class="glass p-8 rounded-2xl flex flex-col items-center text-center shadow-lg border border-slate-800 cursor-pointer" onclick="openBooking('Flight')">
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-sky-400 text-black text-2xl">✈️</div>
+        <h3 class="mt-4 text-xl font-semibold">Flight Service</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section id="booking" class="py-16 bg-slate-900/40 border-t border-slate-800">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-2xl font-bold mb-6 text-center">Booking Form</h2>
+    <div class="glass rounded-2xl p-6">
+      <form id="bookingForm" class="grid gap-4" action="https://formsubmit.co/humsafartravels95@gmail.com" method="POST" target="_blank">
+        <input type="hidden" name="_subject" value="New Booking Form Submission">
+        <div>
+          <label class="text-sm text-slate-300">Travel Type</label>
+          <select name="travel_type" id="travelType" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required onchange="updatePassengerFields()">
+            <option value="">Select Travel Type</option>
+            <option value="Car">Car</option>
+            <option value="Train">Train</option>
+            <option value="Flight">Flight</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-sm text-slate-300">Number of Passengers</label>
+          <input type="number" id="passengerCount" placeholder="No. of Passengers" min="1" value="1" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required onchange="updatePassengerFields()"/>
+        </div>
+        <div id="passengerFields"></div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <input type="text" name="from_city" placeholder="From (City)" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+          <input type="text" name="to_city" placeholder="To (City)" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <input type="date" name="date" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+          <input type="tel" name="phone" placeholder="Phone" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="px-6 py-3 rounded bg-blue-500 text-black font-semibold hover:bg-blue-400 transition">Submit Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="payment" class="py-16 bg-slate-900/40 border-t border-slate-800">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-2xl font-bold mb-6">Payment</h2>
+    <p class="text-slate-300">Send your payment via UPI to: <span class="text-blue-400 font-semibold">9570392829@ybl</span></p>
+    <p class="text-slate-400 mt-2">
+      Payment complete karne ke baad apna payment proof (screenshot) WhatsApp pe bheje ya call kare: 
+      <span class="text-blue-400 font-semibold">9570392829</span>
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-16 bg-slate-900/40 border-t border-slate-800">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-2xl font-bold mb-6">Contact Us</h2>
+    <p>Email: <a href="mailto:humsafartravels95@gmail.com" class="text-blue-400">humsafartravels95@gmail.com</a></p>
+    <p>Phone/WhatsApp: <a href="tel:9570392829" class="text-blue-400">9570392829</a></p>
+  </div>
+</section>
+
+<script>
+// Mobile menu toggle
+const menuButton = document.querySelector('header .md\\:hidden');
+const nav = document.querySelector('header nav');
+menuButton.addEventListener('click', () => {
+  nav.classList.toggle('hidden'); nav.classList.toggle('flex'); nav.classList.toggle('flex-col'); nav.classList.toggle('bg-black/90'); nav.classList.toggle('absolute'); nav.classList.toggle('top-16'); nav.classList.toggle('left-0'); nav.classList.toggle('w-full'); nav.classList.toggle('p-6'); nav.classList.toggle('gap-6');
+});
+
+// Quick Form passenger fields
+function updateQuickPassengers(){
+  const type = document.getElementById('quickTravelType').value;
+  let count = parseInt(document.getElementById('quickPassengerCount').value);
+  if(type==='Car') count=1;
+  const container = document.getElementById('quickPassengerFields');
+  container.innerHTML='';
+  for(let i=1;i<=count;i++){
+    container.innerHTML += `<div class="grid md:grid-cols-2 gap-2 mt-2">
+      <input name="passenger${i}_name" placeholder="${type==='Car'?'Passenger Name':'Passenger '+i+' Name'}" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+      <input name="passenger${i}_age" type="number" placeholder="Age" min="1" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+    </div>`;
+  }
+}
+
+// Booking form passenger fields
+function updatePassengerFields(){
+  const type = document.getElementById('travelType').value;
+  let count = parseInt(document.getElementById('passengerCount').value);
+  if(type==='Car') count=1;
+  const container = document.getElementById('passengerFields');
+  container.innerHTML='';
+  for(let i=1;i<=count;i++){
+    container.innerHTML += `<div class="grid md:grid-cols-2 gap-2 mt-2">
+      <input name="passenger${i}_name" placeholder="${type==='Car'?'Passenger Name':'Passenger '+i+' Name'}" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+      <input name="passenger${i}_age" type="number" placeholder="Age" min="1" class="p-3 rounded bg-transparent border border-slate-700 text-slate-200" required />
+    </div>`;
+  }
+}
+
+// Open booking form on service click
+function openBooking(type){
+  document.getElementById('travelType').value = type;
+  document.getElementById('passengerCount').value = (type==='Car') ? 1 : 1;
+  updatePassengerFields();
+  document.getElementById('booking').scrollIntoView({behavior:"smooth"});
+}
+
+// Alerts on submit
+document.getElementById('quickForm').addEventListener('submit', function(){
+  alert('Quick Request submitted successfully! Please check your email.');
+});
+
+document.getElementById('bookingForm').addEventListener('submit', function(){
+  alert('Booking submitted successfully! Please check your email.');
+});
+</script>
+
+</body>
+</html>
